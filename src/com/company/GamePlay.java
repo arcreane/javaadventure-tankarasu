@@ -24,8 +24,11 @@ public class GamePlay {
         System.out.println("Menu Principale");
     }
 
-    void GameOver() {
-        // explicite
+    /**
+     * Fonction explicite
+     */
+    private static void quitGame() {
+        System.exit(0);
     }
 
     void isEndGame() {
@@ -88,8 +91,8 @@ public class GamePlay {
 
                 break;
             case 5:
-                System.out.println("QUIT");
-                mainMenu();
+                System.out.println("Have a good Day Boy");
+                quitGame();
 
                 break;
             default:
