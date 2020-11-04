@@ -4,6 +4,7 @@ package com.company;
 // todo réduire le scope des variables si possible
 // todo vérifier la cohérence de la langue
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class GamePlay {
@@ -12,16 +13,7 @@ public class GamePlay {
         welcomeMessage();
         mainMenu();
         System.out.println("Menu Principale");
-        System.out.println("Vous entrez dans le donjon");
-        System.out.println("Vous entrez dans la premiere chambre");
-        System.out.println("Le monstre vous attaque");
-        System.out.println("Le monstre est mort");
-        System.out.println("Vous entrez dans la seconde pièce");
-        System.out.println("Le monstre vous attaque");
-        System.out.println("Le monstre est mort");
-        System.out.println("...");
-        System.out.println("Vous avez gagné");
-        System.out.println("Menu Principale");
+
     }
 
     /**
@@ -44,12 +36,33 @@ public class GamePlay {
         // lors de l'entrée dans le donjon on instancie les chambres et les monstres
     }*/
 
-    private static void playGame() {
+    private static void playGame(int level) {
+        System.out.println("on commence les choses sérieuses, niveau : " + level);
+        System.out.println("on initialise la chambre");
 
+
+        // tant que la partie n'est pas terminé , on joue.
+        while (!m_bendGame) {
+            System.out.println("la porte s'ouvre et Bim !");
+            System.out.println("Combat");
+            System.out.println("endgame?");
+            System.out.println("Quit");
+            m_bendGame = true;
+        }
     }
 
     /**
-     * Message de bienvenue en tout début de partie.
+     * This function display the current High Score Panel
+     */
+    private static void viewHighScore() {
+        System.out.println("High Score Panel");
+        for (int i = 0; i < m_aScore.length; i++) {
+            System.out.println(m_aScore[i][1] + " - " + m_aScore[i][0]);
+        }
+    }
+
+    /**
+     * Welcome message at the beginning of the game.
      */
     private static void welcomeMessage() {
         String line = "Bienvenue au pied du Donjon monstrueux et pleins de monstres.";
@@ -73,27 +86,18 @@ public class GamePlay {
         // choix de la difficulté,HS et Quit
         switch (menuChoice) {
             case 1:
-                System.out.println("EASY");
-                mainMenu();
-                break;
             case 2:
-                System.out.println("MEDIUM");
-                mainMenu();
-                break;
             case 3:
-                System.out.println("HARD");
-                mainMenu();
-
+                playGame(menuChoice);
                 break;
             case 4:
                 System.out.println("HIGH_SCORE");
+                viewHighScore();
                 mainMenu();
-
                 break;
             case 5:
                 System.out.println("Have a good Day Boy");
                 quitGame();
-
                 break;
             default:
                 mainMenu();
@@ -102,11 +106,14 @@ public class GamePlay {
     }
 
     // variable membres
-    public boolean m_bendGame = false;
+    private static boolean m_bendGame = false;
     private static Scanner m_scmenuScan = new Scanner(System.in);
+    private static String[][] m_aScore = {{"Jon", "3"}, {"Christel", "2"}, {"Julien", "2"}, {"Melissa", "2"}, {"Billy", "1"}};
 
     // les différents choix possible dans le menu principale
     enum m_emenu {EASY, MEDIUM, HARD, HIGH_SCORE, QUIT}
+
+    private static int passedRoom = 0;
 }
 
 // au lancement 5 pièces sont créés avec leur monstre
