@@ -1,9 +1,12 @@
 package com.company;
 
+//todo protéger les données et les accès
+
 public class GamePlay {
     static void StartGame() {
         // solution en dur
-        System.out.println("Menu Princioale");
+        welcomeMessage();
+        System.out.println("Menu Principale");
         System.out.println("Vous entrez dans le donjon");
         System.out.println("Vous entrez dans la premiere chambre");
         System.out.println("Le monstre vous attaque");
@@ -29,8 +32,20 @@ public class GamePlay {
         // tous les monstres sont éliminés - gagné
     }
 
-    void enterTheDungeon() {
+   /* void enterTheDungeon() {
         // lors de l'entrée dans le donjon on instancie les chambres et les monstres
+    }*/
+
+    /**
+     * Message de bienvenue en tout début de partie.
+     */
+    private static void welcomeMessage() {
+        String line = "Bienvenue au pied du Donjon monstrueux et pleins de monstres.";
+        String bars = "";
+        for (int i = 0; i < line.length(); i++) {
+            bars += "-";
+        }
+        System.out.println(bars + "\n" + line + "\nMontrez leur de quel bois vous vous chauffez !!!\n" + bars);
     }
 
     public boolean endGame = false;

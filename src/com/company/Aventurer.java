@@ -2,11 +2,12 @@ package com.company;
 
 public class Aventurer {
 
+    //constructor
     public Aventurer() {
 
     }
 
-    //    State
+    //    State/Champs
     private static int m_iHealthPoint = 200;
     private static int numberOfFlask = 0;
 
@@ -15,7 +16,7 @@ public class Aventurer {
         System.out.println("La porte s'ouvre");
     }*/
 
-    //    Behavior
+    //    Behavior/ Methods
     public static void attackWithWaterFlask() {
         System.out.println("Wizard loose 10pt");
         System.out.println("Il y a " + numberOfFlask + " flasques d'eau");
@@ -29,4 +30,6 @@ public class Aventurer {
         System.out.println("il vour reste" + m_iHealthPoint + " points de vies");
 
     }
+
+    // Methodes d'accès
 }
