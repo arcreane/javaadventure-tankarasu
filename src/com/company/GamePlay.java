@@ -5,6 +5,7 @@ package com.company;
 // todo vérifier la cohérence de la langue
 
 import java.sql.SQLOutput;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GamePlay {
@@ -39,15 +40,25 @@ public class GamePlay {
     private static void playGame(int level) {
         System.out.println("on commence les choses sérieuses, niveau : " + level);
         System.out.println("on initialise la chambre");
-
+        Random randomNumber = new Random();
+        // this random provide 0 or 1
+        int generatedNumber = (randomNumber.nextInt(10)) % 2;
 
         // tant que la partie n'est pas terminé , on joue.
         while (!m_bendGame) {
-            System.out.println("la porte s'ouvre et Bim !");
-            System.out.println("Combat");
-            System.out.println("endgame?");
-            System.out.println("Quit");
-            m_bendGame = true;
+            int count = 10;
+            while (count > 0) {
+                generatedNumber = (randomNumber.nextInt(10)) % 2;
+                System.out.println(generatedNumber);
+                System.out.println("la porte s'ouvre et Bim !");
+                System.out.println("Combat");
+                System.out.println("endgame?");
+                System.out.println("Quit");
+                count--;
+            }
+            if (count == 0) {
+                m_bendGame = true;
+            }
         }
     }
 
