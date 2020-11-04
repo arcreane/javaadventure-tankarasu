@@ -1,11 +1,16 @@
 package com.company;
 
-//todo protéger les données et les accès
+// todo protéger les données et les accès
+// todo réduire le scope des variables si possible
+// todo vérifier la cohérence de la langue
+
+import java.util.Scanner;
 
 public class GamePlay {
     static void StartGame() {
         // solution en dur
         welcomeMessage();
+        mainMenu();
         System.out.println("Menu Principale");
         System.out.println("Vous entrez dans le donjon");
         System.out.println("Vous entrez dans la premiere chambre");
@@ -36,6 +41,10 @@ public class GamePlay {
         // lors de l'entrée dans le donjon on instancie les chambres et les monstres
     }*/
 
+    private static void playGame() {
+
+    }
+
     /**
      * Message de bienvenue en tout début de partie.
      */
@@ -48,7 +57,53 @@ public class GamePlay {
         System.out.println(bars + "\n" + line + "\nMontrez leur de quel bois vous vous chauffez !!!\n" + bars);
     }
 
-    public boolean endGame = false;
+    /**
+     * Cette fonction sert de pivot pour accéder à toutes les facettes du jeu, on atterris içi à chaque fin de partie par ex
+     */
+    private static void mainMenu() {
+        System.out.println("Faites un choix et ne soyez pas PEULTRE!");
+        for (m_emenu choice : m_emenu.values()) {
+            System.out.println((choice.ordinal() + 1) + " - " + choice);
+        }
+
+        int menuChoice = m_scmenuScan.nextInt();
+        // choix de la difficulté,HS et Quit
+        switch (menuChoice) {
+            case 1:
+                System.out.println("EASY");
+                mainMenu();
+                break;
+            case 2:
+                System.out.println("MEDIUM");
+                mainMenu();
+                break;
+            case 3:
+                System.out.println("HARD");
+                mainMenu();
+
+                break;
+            case 4:
+                System.out.println("HIGH_SCORE");
+                mainMenu();
+
+                break;
+            case 5:
+                System.out.println("QUIT");
+                mainMenu();
+
+                break;
+            default:
+                mainMenu();
+// todo gestion d'erreur si entrée non int
+        }
+    }
+
+    // variable membres
+    public boolean m_bendGame = false;
+    private static Scanner m_scmenuScan = new Scanner(System.in);
+
+    // les différents choix possible dans le menu principale
+    enum m_emenu {EASY, MEDIUM, HARD, HIGH_SCORE, QUIT}
 }
 
 // au lancement 5 pièces sont créés avec leur monstre
