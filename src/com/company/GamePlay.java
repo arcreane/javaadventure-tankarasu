@@ -22,12 +22,18 @@ public class GamePlay {
 
     void isEndGame() {
         // fonction qui va vérifier si la partie est terminée
-        // conditions of Win & Loses
+        //
+        // tant que la partie n'est pas terminé , on joue.
+        // la partie est terminé si:
+        // le joueur n'as plus de point de vie - perdu
+        // tous les monstres sont éliminés - gagné
     }
 
     void enterTheDungeon() {
-        // lors de l'entrée dans le dongeon on instancie le dongeon avec les chambres et les monstres
+        // lors de l'entrée dans le donjon on instancie les chambres et les monstres
     }
+
+    public boolean endGame = false;
 }
 
-//lancement 5 pièces sont créés avec leur monstre
+// au lancement 5 pièces sont créés avec leur monstre
