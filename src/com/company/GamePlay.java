@@ -47,13 +47,11 @@ public class GamePlay {
         while (!m_bendGame) {
             // un monstre est généré
             generatedNumber = (randomNumber.nextInt(10)) % 2;
-            if (generatedNumber == 0) {
-                generatedMonster = "Wizard";
-            } else {
-                generatedMonster = "Barbarian";
-            }
+            Monster myMonster = new Monster();
+            generateMonster(generatedNumber, myMonster);
+
             // la porte s'ouvre et je me fait attaquer
-            System.out.println("The doors is opening and a " + generatedMonster + " attacks! -line 56");
+            System.out.println("The doors is opening and a " + myMonster.getM_sname() + " attacks!");
             // suis-je encore en vie
             while (passedRoom != 5) {
                 if (areYouAlive()) return;
@@ -65,11 +63,11 @@ public class GamePlay {
                 String wichWeaponsToUse = determinateTheGoodWeapon(generatedMonster);
                 System.out.println("You must use " + wichWeaponsToUse + " against " + generatedMonster + "!!! -line 66");
 
-
                 // je choisi l'arme à utiliser
                 System.out.println("Wich weapon would you use? -line 70");
                 String choosenWeapon = m_scmenuScan.next();
                 // todo insert isRandomEventHappen
+                // todo verifier que le lowerCase et le trim fonctionne
                 choosenWeapon.toLowerCase();
                 choosenWeapon.trim();
                 // est ce que l'arme est efficace ?
@@ -97,6 +95,16 @@ public class GamePlay {
         }
     }
 
+    private static void generateMonster(int generatedNumber, Monster myMonster) {
+        if (generatedNumber == 0) {
+            myMonster.setM_ihealthPoint(Wizard.getM_iHealthPoint());
+            myMonster.setM_sname(Wizard.getM_sname());
+        } else {
+            myMonster.setM_ihealthPoint(Barbarian.getM_iHealthPoint());
+            myMonster.setM_sname(Barbarian.getM_sname());
+        }
+    }
+
     private static boolean isAlive() {
         String isAlive = m_scmenuScan.next();
         if (isAlive.equals("n")) {
@@ -110,7 +118,7 @@ public class GamePlay {
             System.out.println("The " + generatedMonster + " takes damage -line 104");
             return true;
         } else {
-            System.out.println("You didn't damaged the " + generatedMonster +" -line 114");
+            System.out.println("You didn't damaged the " + generatedMonster + " -line 114");
             return false;
         }
     }
@@ -167,7 +175,7 @@ public class GamePlay {
      * Cette fonction sert de pivot pour accéder à toutes les facettes du jeu, on atterris içi à chaque fin de partie par ex
      */
     private static void mainMenu() {
-        System.out.println("Faites un choix et ne soyez pas PEULTRE!");
+        System.out.println("Make a choice and don't be Afraid!!!");
         for (m_emenu choice : m_emenu.values()) {
             System.out.println((choice.ordinal() + 1) + " - " + choice);
         }
@@ -197,7 +205,8 @@ public class GamePlay {
 
     // variable membres
     private static boolean m_bendGame = false;
-    private static Scanner m_scmenuScan = new Scanner(System.in);
+    // todo verifier si le scanner en final ne pose pas de problème
+    private static final Scanner m_scmenuScan = new Scanner(System.in);
     private static String[][] m_aScore = {{"Jon", "3"}, {"Christel", "2"}, {"Julien", "2"}, {"Melissa", "2"}, {"Billy", "1"}};
 
     // les différents choix possible dans le menu principale
@@ -206,4 +215,3 @@ public class GamePlay {
     private static int passedRoom = 0;
 }
 
-// au lancement 5 pièces sont créés avec leur monstre

@@ -3,19 +3,37 @@ package com.company;
 public class Wizard {
     // Constructor
     public Wizard() {
-        this.m_iHealthPoint = m_iHealthPoint;
-
-        System.out.println(this.m_iHealthPoint + " - Pt De Vie");
+        int healthPoint = m_iHealthPoint;
     }
 
     // Champs/variable d'instances
-    int m_iHealthPoint = 20;
+    private static int m_iHealthPoint = 20;
+    public static String m_sname = "Wizard";
+    private String m_sweakness = "Water Flask";
 
-    // Methodes
 
-    // methodes d'accès
+    // Méthodes d'accès - setter
+    public void setM_iHealthPoint(int m_iHealthPoint) {
+        this.m_iHealthPoint = m_iHealthPoint;
+    }
 
-    // attack with Lightning
+    public void setM_sname(String m_sname) {
+        this.m_sname = m_sname;
+    }
 
+    // Méthodes d'accès - getter
+    public static int getM_iHealthPoint() {
+        return m_iHealthPoint;
+    }
+
+    public static String getM_sname() {
+        return m_sname;
+    }
+
+    // méthodes
+    public void attack() {
+        System.out.println("Take this lightning");
+    }
 
 }
+/* todo vérifier les this */
