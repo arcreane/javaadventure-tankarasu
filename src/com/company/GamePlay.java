@@ -4,7 +4,6 @@ package com.company;
 // todo réduire le scope des variables si possible
 // todo vérifier la cohérence de la langue
 
-import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -39,27 +38,107 @@ public class GamePlay {
 
     private static void playGame(int level) {
         System.out.println("on commence les choses sérieuses, niveau : " + level);
-        System.out.println("on initialise la chambre");
         Random randomNumber = new Random();
         // this random provide 0 or 1
         int generatedNumber = (randomNumber.nextInt(10)) % 2;
+        String generatedMonster = "";
 
         // tant que la partie n'est pas terminé , on joue.
         while (!m_bendGame) {
-            int count = 10;
-            while (count > 0) {
-                generatedNumber = (randomNumber.nextInt(10)) % 2;
-                System.out.println(generatedNumber);
-                System.out.println("la porte s'ouvre et Bim !");
-                System.out.println("Combat");
-                System.out.println("endgame?");
-                System.out.println("Quit");
-                count--;
+            // un monstre est généré
+            generatedNumber = (randomNumber.nextInt(10)) % 2;
+            if (generatedNumber == 0) {
+                generatedMonster = "Wizard";
+            } else {
+                generatedMonster = "Barbarian";
             }
-            if (count == 0) {
-                m_bendGame = true;
+            // la porte s'ouvre et je me fait attaquer
+            System.out.println("The doors is opening and a " + generatedMonster + " attacks! -line 56");
+            // suis-je encore en vie
+            while (passedRoom != 5) {
+                if (areYouAlive()) return;
+                // l'évènement aléatoire a t-il eu lieu?
+                isRandomEventHappened();
+                System.out.println("You take 10 damage and your healthPoint are now 190 pt -line 62");
+
+                // on informe sur l'arme à utiliser
+                String wichWeaponsToUse = determinateTheGoodWeapon(generatedMonster);
+                System.out.println("You must use " + wichWeaponsToUse + " against " + generatedMonster + "!!! -line 66");
+
+
+                // je choisi l'arme à utiliser
+                System.out.println("Wich weapon would you use? -line 70");
+                String choosenWeapon = m_scmenuScan.next();
+                // todo insert isRandomEventHappen
+                choosenWeapon.toLowerCase();
+                choosenWeapon.trim();
+                // est ce que l'arme est efficace ?
+                if (isWeaponUseful(generatedMonster, choosenWeapon)) {
+                    System.out.println("The weapon is useFul -line 76");
+                    // est ce que le monstre est mort ?
+                    System.out.println("is Monster still Alive? (y/n) -line 78");
+                    if (!isAlive()) {
+                        System.out.println("the fight continue -line 80");
+                        // si le monstre est encore vivant , on déduit les effets de l'attaque de ses points de vies et on vérifie si l'évènement aléatoire a eut lieu
+                    } else {
+                        System.out.println("the monster is defeated -line 82");
+                        passedRoom++;
+                        // si tous les monstres sont tués = victoire
+                        if (passedRoom == 5) {
+                            System.out.println("Vous avez gagné");
+                            m_bendGame = true;
+                        }
+                        // si monstre tué mais qu'il en reste encore on génère un autre monstre
+                    }
+                } else {
+                    System.out.println("The weapon isn't useful -line 86");
+                }
             }
         }
+    }
+
+    private static boolean isAlive() {
+        String isAlive = m_scmenuScan.next();
+        if (isAlive.equals("n")) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isWeaponUseful(String generatedMonster, String choosenWeapon) {
+        if ((choosenWeapon.equals("sword") & generatedMonster.equals("Barbarian")) | (choosenWeapon.equals("water flask") & generatedMonster.equals("Wizard"))) {
+            System.out.println("The " + generatedMonster + " takes damage -line 104");
+            return true;
+        } else {
+            System.out.println("You didn't damaged the " + generatedMonster +" -line 114");
+            return false;
+        }
+    }
+
+    private static String determinateTheGoodWeapon(String generatedMonster) {
+        String wichWeaponsToUse;
+        if (generatedMonster.equals("Wizard")) {
+            wichWeaponsToUse = "Water Flask";
+        } else {
+            wichWeaponsToUse = "Sword";
+        }
+        return wichWeaponsToUse;
+    }
+
+    private static void isRandomEventHappened() {
+        System.out.println("Did the Random event happened ? y/n -line 123");
+        String isRandomEventHappened = m_scmenuScan.next();
+        if (isRandomEventHappened.equals("y")) {
+            System.out.println("the Random effect are applied -line 126");
+        } else {
+            System.out.println("the Random effect isn't applied -line 128");
+        }
+    }
+
+    private static boolean areYouAlive() {
+        System.out.println("Are you still Alive? (y/n) -line 133");
+        if (isAlive()) return true;
+        return false;
     }
 
     /**
@@ -112,7 +191,7 @@ public class GamePlay {
                 break;
             default:
                 mainMenu();
-// todo gestion d'erreur si entrée non int
+                // todo gestion d'erreur si entrée non int
         }
     }
 
