@@ -9,7 +9,7 @@ public class Barbarian {
     //variables membres
     private static int m_iHealthPoint = 20;
     static String m_sname = "Barbarian";
-    private String m_sweakness = "Sword";
+    private static String m_sweakness = "Sword";
 
 
     public static String getM_sname() {
@@ -21,10 +21,16 @@ public class Barbarian {
     }
 
     // méthodes d'accès
+    //getters
     public static int getM_iHealthPoint() {
         return m_iHealthPoint;
     }
 
+    public static String getM_sweakness() {
+        return m_sweakness;
+    }
+
+    //setters
     public void setM_iHealthPoint(int m_iHealthPoint) {
         this.m_iHealthPoint = m_iHealthPoint;
     }

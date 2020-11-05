@@ -17,12 +17,10 @@ public class Aventurer {
 
     //    Behavior/ Methods
     private static int attack(String nameMonster, String weakness, String choosenWeapon) {
-        if (nameMonster.equals("Wizard") & choosenWeapon.equals(weakness)) {
-            setNumberOfFlask(getNumberOfFlask() + 1);
-            damage += (numberOfFlask - 1) * 2;
-            return damage;
-        } else if (nameMonster.equals("Barbarian") & choosenWeapon.equals(weakness)) {
-            return damage;
+        if (choosenWeapon.equals("wizard")) {
+            return attackWithWaterFlask(nameMonster, weakness);
+        } else if (choosenWeapon.equals("barbarian")) {
+            return attackWithSword(nameMonster, weakness);
         } else {
             return 0;
         }
@@ -30,19 +28,25 @@ public class Aventurer {
 
     private static void resetFlaskNumber() {
         // set number Flask
+        // todo set the number of flask
     }
 
-    private static void attackWithWaterFlask() {
-        System.out.println("Wizard loose 10 pt");
-        System.out.println("Il y a " + numberOfFlask + " flasques d'eau");
-        System.out.println("il vour reste " + m_iHealthPoint + " points de vies");
-        numberOfFlask++;
+    private static int attackWithWaterFlask(String nameMonster, String weakness) {
+        if (nameMonster.equals("Barbarian") & choosenWeapon.equals(weakness)) {
+            return damage;
+        } else {
+            return 0;
+        }
     }
 
-    private static void attackWithSword() {
-        System.out.println("Barbarian loose 10 pt");
-        System.out.println("10% de chance d'assommer l'agresseur");
-        System.out.println("il vour reste" + m_iHealthPoint + " points de vies");
+    private static int attackWithSword(String nameMonster, String weakness) {
+        if (nameMonster.equals("Wizard") & choosenWeapon.equals(weakness)) {
+            setNumberOfFlask(getNumberOfFlask() + 1);
+            damage += (numberOfFlask - 1) * 2;
+            return damage;
+        } else {
+            return 0;
+        }
 
     }
 

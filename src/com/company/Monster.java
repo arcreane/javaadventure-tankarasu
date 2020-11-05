@@ -6,45 +6,54 @@ public class Monster {
     }
 
     //méthodes
-    public int attack() {
+    public static int attack() {
         int damage = 10;
+        int playerHP = Aventurer.getM_iHealthPoint();
+
         if (m_sname.equals("Wizard")) {
             if (GamePlay.isRandomEventHappened(10)) {
                 System.out.println("you took " + damage + " damage and were paralized for one turn");
-                // todo mettre les infos du player hp
-                // todo déduire les points du player ici ou ailleurs ?
+                playerHP -= damage;
+                Aventurer.setM_iHealthPoint(playerHP);
+                System.out.println("You have now " + playerHP + " HP.");
                 System.out.println("So i attack again and you took " + damage + " damage");
-                // todo idem
-                return damage;
-            } else {
-                System.out.println("you took " + damage + " damage");
-                // todo mettre les infos du player hp
-                // todo déduire les points du player ici ou ailleurs ?
+                playerHP -= damage;
+                Aventurer.setM_iHealthPoint(playerHP);
+                System.out.println("You have now " + playerHP + " HP.");
                 return damage;
             }
+            System.out.println("you took " + damage + " damage");
+            playerHP -= damage;
+            Aventurer.setM_iHealthPoint(playerHP);
+            System.out.println("You have now " + playerHP + " HP.");
+            return damage;
+
         } else {
             if (GamePlay.isRandomEventHappened(30)) {
-                damage = 20;
+                damage = 30;
                 System.out.println("the Barbarian double his attack and you took " + damage + " damage");
-                // todo mettre les infos du player hp
-                // todo déduire les points du player ici ou ailleurs ?
+                playerHP -= damage;
+                Aventurer.setM_iHealthPoint(playerHP);
+                System.out.println("You have now " + playerHP + " HP.");
                 return damage;
             } else {
+                damage = 15;
                 System.out.println("you took " + damage + " damage");
-                // todo mettre les infos du player hp
-                // todo déduire les points du player ici ou ailleurs ?
+                playerHP -= damage;
+                Aventurer.setM_iHealthPoint(playerHP);
+                System.out.println("You have now " + playerHP + " HP.");
                 return damage;
             }
         }
     }
 
     // variables membre
-    int m_ihealthPoint = 10;
-    String m_sname = "monster";
-    String m_sweakness = "";
+    static int m_ihealthPoint = 10;
+    static String m_sname = "monster";
+    static String m_sweakness = "";
 
     // getter
-    public int getM_ihealthPoint() {
+    public static int getM_ihealthPoint() {
         return m_ihealthPoint;
     }
 

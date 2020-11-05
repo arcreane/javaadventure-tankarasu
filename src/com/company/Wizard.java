@@ -9,7 +9,9 @@ public class Wizard {
     // Champs/variable d'instances
     private static int m_iHealthPoint = 20;
     public static String m_sname = "Wizard";
-    private String m_sweakness = "Water Flask";
+
+
+    private static String m_sweakness = "Water Flask";
 
 
     // Méthodes d'accès - setter
@@ -21,6 +23,10 @@ public class Wizard {
         this.m_sname = m_sname;
     }
 
+    public void setM_sweakness(String m_sweakness) {
+        this.m_sweakness = m_sweakness;
+    }
+
     // Méthodes d'accès - getter
     public static int getM_iHealthPoint() {
         return m_iHealthPoint;
@@ -29,6 +35,11 @@ public class Wizard {
     public static String getM_sname() {
         return m_sname;
     }
+
+    public static String getM_sweakness() {
+        return m_sweakness;
+    }
+
 
 }
 /* todo vérifier les this */

@@ -51,26 +51,18 @@ public class GamePlay {
             generatedNumber = (randomNumber.nextInt(10)) % 2;
             Monster myMonster = new Monster();
             generateMonster(generatedNumber, myMonster);
-            myMonster.attack();//test
-            myMonster.attack();//test
-            myMonster.attack();//test
-            myMonster.attack();//test
-            myMonster.attack();//test
-            myMonster.attack();//test
-            myMonster.attack();//test
-            myMonster.attack();//test
+
             // la porte s'ouvre et je me fait attaquer
-            System.out.println("The doors is opening and a " + myMonster.getM_sname() + " attacks!");
-            // suis-je encore en vie
+            System.out.println("The doors N°" + (passedRoom + 1) + " is opening and a " + myMonster.getM_sname() + " attacks!");
             while (passedRoom != 5) {
-                if (areYouAlive()) return;
-                // l'évènement aléatoire a t-il eu lieu?
-                isRandomEventHappened(50);
-                System.out.println("You take 10 damage and your healthPoint are now 190 pt -line 62");
+                // no need to fight if your dead
+                if (!isAlive(Aventurer.getM_iHealthPoint())) return;
+
+                //le monstre attaque
+                int monsterDamage = Monster.attack();
 
                 // on informe sur l'arme à utiliser
-                String wichWeaponsToUse = determinateTheGoodWeapon(generatedMonster);
-                System.out.println("You must use " + wichWeaponsToUse + " against " + generatedMonster + "!!! -line 66");
+                System.out.println("Monster weaknes is " + myMonster.getM_sweakness());
 
                 // je choisi l'arme à utiliser
                 System.out.println("Wich weapon would you use? -line 70");
@@ -84,7 +76,7 @@ public class GamePlay {
                     System.out.println("The weapon is useFul -line 76");
                     // est ce que le monstre est mort ?
                     System.out.println("is Monster still Alive? (y/n) -line 78");
-                    if (!isAlive()) {
+                    if (!isAlive(Monster.getM_ihealthPoint())) {
                         System.out.println("the fight continue -line 80");
                         // si le monstre est encore vivant , on déduit les effets de l'attaque de ses points de vies et on vérifie si l'évènement aléatoire a eut lieu
                     } else {
@@ -108,18 +100,18 @@ public class GamePlay {
         if (generatedNumber == 0) {
             myMonster.setM_ihealthPoint(Wizard.getM_iHealthPoint());
             myMonster.setM_sname(Wizard.getM_sname());
+            myMonster.setM_sweakness(Wizard.getM_sweakness());
         } else {
             myMonster.setM_ihealthPoint(Barbarian.getM_iHealthPoint());
             myMonster.setM_sname(Barbarian.getM_sname());
+            myMonster.setM_sweakness(Barbarian.getM_sweakness());
+
         }
     }
 
-    private static boolean isAlive() {
-        String isAlive = m_scmenuScan.next();
-        if (isAlive.equals("n")) {
-            return true;
-        }
-        return false;
+    private static boolean isAlive(int healthPoint) {
+        if (healthPoint > 0) return true;
+        else return false;
     }
 
     private static boolean isWeaponUseful(String generatedMonster, String choosenWeapon) {
@@ -149,12 +141,6 @@ public class GamePlay {
             System.out.println("Random event has happened");
             return true;
         }
-        return false;
-    }
-
-    private static boolean areYouAlive() {
-        System.out.println("Are you still Alive? (y/n) -line 133");
-        if (isAlive()) return true;
         return false;
     }
 
