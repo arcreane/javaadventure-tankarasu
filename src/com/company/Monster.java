@@ -74,4 +74,3 @@ public class Monster {
         m_sweakness = weakness;
     }
 }
-// TODO: 05/11/2020 return needed on method?

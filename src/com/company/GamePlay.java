@@ -9,11 +9,9 @@ import java.util.Scanner;
 
 public class GamePlay {
     static void StartGame() {
-        // solution en dur
         welcomeMessage();
         mainMenu();
-        System.out.println("Menu Principale");
-
+        System.out.println("Main Menu");
     }
 
     /**
@@ -22,19 +20,6 @@ public class GamePlay {
     private static void quitGame() {
         System.exit(0);
     }
-
-    void isEndGame() {
-        // fonction qui va vérifier si la partie est terminée
-        //
-        // tant que la partie n'est pas terminé , on joue.
-        // la partie est terminé si:
-        // le joueur n'as plus de point de vie - perdu
-        // tous les monstres sont éliminés - gagné
-    }
-
-   /* void enterTheDungeon() {
-        // lors de l'entrée dans le donjon on instancie les chambres et les monstres
-    }*/
 
     private static void playGame(int level) {
         // on génère l'aventurier
@@ -58,8 +43,8 @@ public class GamePlay {
                 // no need to fight if your dead
                 if (!isAlive(Aventurer.getM_iHealthPoint())) return;
 
-                //le monstre attaque
-                int monsterDamage = Monster.attack();
+                // monster attack as Welcome message
+                Monster.attack();
 
                 // on informe sur l'arme à utiliser
                 System.out.println("Monster weaknes is " + myMonster.getM_sweakness());
@@ -115,26 +100,6 @@ public class GamePlay {
     private static boolean isAlive(int healthPoint) {
         if (healthPoint > 0) return true;
         else return false;
-    }
-
-    private static boolean isWeaponUseful(String generatedMonster, String choosenWeapon) {
-        if ((choosenWeapon.equals("sword") & generatedMonster.equals("Barbarian")) | (choosenWeapon.equals("water flask") & generatedMonster.equals("Wizard"))) {
-            System.out.println("The " + generatedMonster + " takes damage -line 104");
-            return true;
-        } else {
-            System.out.println("You didn't damaged the " + generatedMonster + " -line 114");
-            return false;
-        }
-    }
-
-    private static String determinateTheGoodWeapon(String generatedMonster) {
-        String wichWeaponsToUse;
-        if (generatedMonster.equals("Wizard")) {
-            wichWeaponsToUse = "Water Flask";
-        } else {
-            wichWeaponsToUse = "Sword";
-        }
-        return wichWeaponsToUse;
     }
 
     public static boolean isRandomEventHappened(int pCentChance) {
@@ -203,7 +168,6 @@ public class GamePlay {
 
     // variable membres
     private static boolean m_bendGame = false;
-    // todo verifier si le scanner en final ne pose pas de problème
     private static final Scanner m_scmenuScan = new Scanner(System.in);
     private static String[][] m_aScore = {{"Jon", "3"}, {"Christel", "2"}, {"Julien", "2"}, {"Melissa", "2"}, {"Billy", "1"}};
 
@@ -213,4 +177,5 @@ public class GamePlay {
     private static int passedRoom = 0;
 }
 
-// TODO: 05/11/2020 return needed on method? 
+// TODO: 05/11/2020 return needed on method?
+// todo initialiser les waterFlasks
