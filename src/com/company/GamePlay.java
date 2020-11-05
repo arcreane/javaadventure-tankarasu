@@ -37,6 +37,8 @@ public class GamePlay {
     }*/
 
     private static void playGame(int level) {
+        // on génère l'aventurier
+        Aventurer zelda = new Aventurer();
         System.out.println("on commence les choses sérieuses, niveau : " + level);
         Random randomNumber = new Random();
         // this random provide 0 or 1
