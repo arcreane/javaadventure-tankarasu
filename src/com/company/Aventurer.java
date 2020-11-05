@@ -16,13 +16,13 @@ public class Aventurer {
     private static String choosenWeapon = "";
 
     //    Behavior/ Methods
-    private static int attack(String nameMonster, String weakness, String choosenWeapon) {
-        if (choosenWeapon.equals("wizard")) {
-            return attackWithWaterFlask(nameMonster, weakness);
-        } else if (choosenWeapon.equals("barbarian")) {
-            return attackWithSword(nameMonster, weakness);
-        } else {
-            return 0;
+    public static void attack(String nameMonster, String weakness, String choosenWeapon) {
+        System.out.println(choosenWeapon + " fichier aventurer l 20");
+        setChoosenWeapon(choosenWeapon);
+        if (choosenWeapon.equals("Water_Flask")) {
+            attackWithWaterFlask(nameMonster, weakness);
+        } else if (choosenWeapon.equals("Sword")) {
+            attackWithSword(nameMonster, weakness);
         }
     }
 
@@ -31,23 +31,27 @@ public class Aventurer {
         // todo set the number of flask
     }
 
-    private static int attackWithWaterFlask(String nameMonster, String weakness) {
+    private static void attackWithSword(String nameMonster, String weakness) {
         if (nameMonster.equals("Barbarian") & choosenWeapon.equals(weakness)) {
-            return damage;
-        } else {
-            return 0;
+            int monsterHP = Monster.getM_ihealthPoint();
+            monsterHP -= damage;
+            Monster.setM_ihealthPoint(monsterHP);
+            System.out.println("You have maid " + damage + " damage to " + Monster.getM_sname());
+            System.out.println(Monster.getM_sname() + " has " + Monster.getM_ihealthPoint() + " HP remaining");
         }
     }
 
-    private static int attackWithSword(String nameMonster, String weakness) {
+    private static void attackWithWaterFlask(String nameMonster, String weakness) {
         if (nameMonster.equals("Wizard") & choosenWeapon.equals(weakness)) {
             setNumberOfFlask(getNumberOfFlask() + 1);
             damage += (numberOfFlask - 1) * 2;
-            return damage;
-        } else {
-            return 0;
+            int monsterHP = Monster.getM_ihealthPoint();
+            monsterHP -= damage;
+            Monster.setM_ihealthPoint(monsterHP);
+            System.out.println("You have maid " + damage + " damage to " + Monster.getM_sname());
+            System.out.println(Monster.getM_sname() + " has " + Monster.getM_ihealthPoint() + " HP remaining");
+            System.out.println("there's " + numberOfFlask + " water pool on the feet of " + Monster.getM_sname());
         }
-
     }
 
     // Méthodes d'accès
@@ -95,3 +99,4 @@ public class Aventurer {
 
 
 }
+// TODO: 05/11/2020 return needed on method?  

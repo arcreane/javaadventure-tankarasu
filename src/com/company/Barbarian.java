@@ -36,3 +36,4 @@ public class Barbarian {
     }
 }
 // todo faire un tour des this et ranger le fichier
+// TODO: 05/11/2020 return needed on method?

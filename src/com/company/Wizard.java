@@ -11,7 +11,7 @@ public class Wizard {
     public static String m_sname = "Wizard";
 
 
-    private static String m_sweakness = "Water Flask";
+    private static String m_sweakness = "Water_Flask";
 
 
     // Méthodes d'accès - setter
@@ -43,3 +43,4 @@ public class Wizard {
 
 }
 /* todo vérifier les this */
+// TODO: 05/11/2020 return needed on method?

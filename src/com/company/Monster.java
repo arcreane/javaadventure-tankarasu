@@ -16,7 +16,7 @@ public class Monster {
                 playerHP -= damage;
                 Aventurer.setM_iHealthPoint(playerHP);
                 System.out.println("You have now " + playerHP + " HP.");
-                System.out.println("So i attack again and you took " + damage + " damage");
+                System.out.println("So Wizard attack again and you took " + damage + " damage");
                 playerHP -= damage;
                 Aventurer.setM_iHealthPoint(playerHP);
                 System.out.println("You have now " + playerHP + " HP.");
@@ -32,18 +32,14 @@ public class Monster {
             if (GamePlay.isRandomEventHappened(30)) {
                 damage = 30;
                 System.out.println("the Barbarian double his attack and you took " + damage + " damage");
-                playerHP -= damage;
-                Aventurer.setM_iHealthPoint(playerHP);
-                System.out.println("You have now " + playerHP + " HP.");
-                return damage;
             } else {
                 damage = 15;
                 System.out.println("you took " + damage + " damage");
-                playerHP -= damage;
-                Aventurer.setM_iHealthPoint(playerHP);
-                System.out.println("You have now " + playerHP + " HP.");
-                return damage;
             }
+            playerHP -= damage;
+            Aventurer.setM_iHealthPoint(playerHP);
+            System.out.println("You have now " + playerHP + " HP.");
+            return damage;
         }
     }
 
@@ -57,7 +53,7 @@ public class Monster {
         return m_ihealthPoint;
     }
 
-    public String getM_sname() {
+    public static String getM_sname() {
         return m_sname;
     }
 
@@ -66,7 +62,7 @@ public class Monster {
     }
 
     //setter
-    public void setM_ihealthPoint(int healthPoint) {
+    public static void setM_ihealthPoint(int healthPoint) {
         m_ihealthPoint = healthPoint;
     }
 
@@ -78,3 +74,4 @@ public class Monster {
         m_sweakness = weakness;
     }
 }
+// TODO: 05/11/2020 return needed on method?

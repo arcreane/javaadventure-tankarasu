@@ -65,20 +65,18 @@ public class GamePlay {
                 System.out.println("Monster weaknes is " + myMonster.getM_sweakness());
 
                 // je choisi l'arme à utiliser
-                System.out.println("Wich weapon would you use? -line 70");
+                System.out.println("attack with Sword or Water_Flask ?");
                 String choosenWeapon = m_scmenuScan.next();
                 // todo insert isRandomEventHappen
                 // todo verifier que le lowerCase et le trim fonctionne
-                choosenWeapon.toLowerCase();
-                choosenWeapon.trim();
+
                 // est ce que l'arme est efficace ?
-                if (isWeaponUseful(generatedMonster, choosenWeapon)) {
-                    System.out.println("The weapon is useFul -line 76");
+                if (choosenWeapon.equals(myMonster.getM_sweakness())) {
+                    System.out.println("The weapon is useFul");
+                    Aventurer.attack(myMonster.getM_sname(), myMonster.getM_sweakness(), choosenWeapon);
                     // est ce que le monstre est mort ?
-                    System.out.println("is Monster still Alive? (y/n) -line 78");
-                    if (!isAlive(Monster.getM_ihealthPoint())) {
-                        System.out.println("the fight continue -line 80");
-                        // si le monstre est encore vivant , on déduit les effets de l'attaque de ses points de vies et on vérifie si l'évènement aléatoire a eut lieu
+                    if (isAlive(Monster.getM_ihealthPoint())) {
+                        System.out.println("the fight continue");
                     } else {
                         System.out.println("the monster is defeated -line 82");
                         passedRoom++;
@@ -88,9 +86,14 @@ public class GamePlay {
                             m_bendGame = true;
                         }
                         // si monstre tué mais qu'il en reste encore on génère un autre monstre
+                        generatedNumber = (randomNumber.nextInt(10)) % 2;
+
+                        generateMonster(generatedNumber, myMonster);
+                        myMonster.setM_ihealthPoint(20);
+                        ;
                     }
                 } else {
-                    System.out.println("The weapon isn't useful -line 86");
+                    System.out.println("The weapon isn't useful");
                 }
             }
         }
@@ -210,3 +213,4 @@ public class GamePlay {
     private static int passedRoom = 0;
 }
 
+// TODO: 05/11/2020 return needed on method? 
