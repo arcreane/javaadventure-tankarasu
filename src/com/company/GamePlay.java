@@ -49,14 +49,21 @@ public class GamePlay {
             generatedNumber = (randomNumber.nextInt(10)) % 2;
             Monster myMonster = new Monster();
             generateMonster(generatedNumber, myMonster);
-
+            myMonster.attack();//test
+            myMonster.attack();//test
+            myMonster.attack();//test
+            myMonster.attack();//test
+            myMonster.attack();//test
+            myMonster.attack();//test
+            myMonster.attack();//test
+            myMonster.attack();//test
             // la porte s'ouvre et je me fait attaquer
             System.out.println("The doors is opening and a " + myMonster.getM_sname() + " attacks!");
             // suis-je encore en vie
             while (passedRoom != 5) {
                 if (areYouAlive()) return;
                 // l'évènement aléatoire a t-il eu lieu?
-                isRandomEventHappened();
+                isRandomEventHappened(50);
                 System.out.println("You take 10 damage and your healthPoint are now 190 pt -line 62");
 
                 // on informe sur l'arme à utiliser
@@ -133,14 +140,14 @@ public class GamePlay {
         return wichWeaponsToUse;
     }
 
-    private static void isRandomEventHappened() {
-        System.out.println("Did the Random event happened ? y/n -line 123");
-        String isRandomEventHappened = m_scmenuScan.next();
-        if (isRandomEventHappened.equals("y")) {
-            System.out.println("the Random effect are applied -line 126");
-        } else {
-            System.out.println("the Random effect isn't applied -line 128");
+    public static boolean isRandomEventHappened(int pCentChance) {
+        Random randomNumber = new Random();
+        int chance = randomNumber.nextInt(100);
+        if (pCentChance >= chance) {
+            System.out.println("Random event has happened");
+            return true;
         }
+        return false;
     }
 
     private static boolean areYouAlive() {

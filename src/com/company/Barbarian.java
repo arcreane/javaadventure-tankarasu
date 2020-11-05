@@ -9,7 +9,7 @@ public class Barbarian {
     //variables membres
     private static int m_iHealthPoint = 20;
     static String m_sname = "Barbarian";
-    private String m_sweakness = "";
+    private String m_sweakness = "Sword";
 
 
     public static String getM_sname() {
@@ -28,12 +28,5 @@ public class Barbarian {
     public void setM_iHealthPoint(int m_iHealthPoint) {
         this.m_iHealthPoint = m_iHealthPoint;
     }
-
-    // méthodes
-    public void attack() {
-        System.out.println("Take this AXE");
-    }
-    // attack with BarbarianAxe
-
 }
 // todo faire un tour des this et ranger le fichier

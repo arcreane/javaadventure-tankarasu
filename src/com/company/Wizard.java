@@ -30,10 +30,5 @@ public class Wizard {
         return m_sname;
     }
 
-    // méthodes
-    public void attack() {
-        System.out.println("Take this lightning");
-    }
-
 }
 /* todo vérifier les this */
