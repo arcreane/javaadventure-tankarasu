@@ -8,7 +8,7 @@ public class Axe extends Weapon {
     }
 
     // méthodes
-    public static int axeAttack() {
+    public  int axeAttack() {
         setM_idamage(15);
         System.out.println("an " + getM_sname() + " deals " + getM_idamage() + " damage per attack!");
         return getM_idamage();
@@ -19,7 +19,7 @@ public class Axe extends Weapon {
     private static final String m_sname = "Axe";
 
     // getters
-    public static int getM_idamage() {
+    public int getM_idamage() {
         return m_idamage;
     }
 

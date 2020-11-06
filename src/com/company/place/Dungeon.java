@@ -1,5 +1,7 @@
 package com.company.place;
 
+import com.company.charactere.Adventurer_new;
+
 public class Dungeon {
     // constructor
     // initialisation du dungeon todo effacer à la fin
@@ -14,7 +16,7 @@ public class Dungeon {
         // filling dungeon with a number of room
         for (Room oneRoom : m_aDungeonRoom
         ) {
-            oneRoom = new Room(difficulty);
+            oneRoom = new Room();
         }
     }
 
@@ -30,8 +32,12 @@ public class Dungeon {
     /**
      * give the Heroes capability of enter the dungeon
      */
-    public void enterDungeon() {
-
+    public void enterDungeon(Adventurer_new player) {
+        // todo gestion du heros isAlive() lors de l'entrée dans la Room
+        for (Room room : m_aDungeonRoom
+        ) {
+            room.openDoor(player);
+        }
     }
 
     // variables membres
