@@ -1,4 +1,6 @@
-package com.company;
+package com.company.charactere;
+
+import com.company.game.GamePlay;
 
 public class Monster {
     // constructor

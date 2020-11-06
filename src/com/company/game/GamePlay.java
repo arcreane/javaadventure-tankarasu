@@ -1,6 +1,11 @@
-package com.company;
+package com.company.game;
 
 // todo protéger les données et les accès
+
+import com.company.charactere.Aventurer;
+import com.company.charactere.Barbarian;
+import com.company.charactere.Monster;
+import com.company.charactere.Wizard;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -95,8 +100,7 @@ public class GamePlay {
     }
 
     private static boolean isAlive(int healthPoint) {
-        if (healthPoint > 0) return true;
-        else return false;
+        return healthPoint > 0;
     }
 
     public static boolean isRandomEventHappened(int pCentChance) {

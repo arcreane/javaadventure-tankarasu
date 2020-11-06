@@ -1,4 +1,4 @@
-package com.company;
+package com.company.charactere;
 
 public class Wizard {
     // Constructor
