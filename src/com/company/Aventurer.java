@@ -10,7 +10,7 @@ public class Aventurer {
     //    State/Champs
     private static int m_iHealthPoint = 200;
     private static int numberOfFlask = 0;
-    private static String m_sname = "Zelda";
+    private static final String m_sname = "Zelda";
     private static int damage = 10;
     private static String choosenWeapon = "";
 
@@ -57,6 +57,8 @@ public class Aventurer {
         return numberOfFlask;
     }
 
+    public  String getM_sname(){return m_sname;}
+
     //setters
     public static void setM_iHealthPoint(int m_iHealthPoint) {
         Aventurer.m_iHealthPoint = m_iHealthPoint;
@@ -71,3 +73,4 @@ public class Aventurer {
     }
 
 }
+// TODO: 06/11/2020 verifier si le reset WaterFlask est effectif

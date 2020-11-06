@@ -6,7 +6,7 @@ public class Monster {
     }
 
     //méthodes
-    public static int attack() {
+    public static void attack() {
         int damage = 10;
         int playerHP = Aventurer.getM_iHealthPoint();
 
@@ -20,13 +20,11 @@ public class Monster {
                 playerHP -= damage;
                 Aventurer.setM_iHealthPoint(playerHP);
                 System.out.println("You have now " + playerHP + " HP.");
-                return damage;
             }
             System.out.println("you took " + damage + " damage");
             playerHP -= damage;
             Aventurer.setM_iHealthPoint(playerHP);
             System.out.println("You have now " + playerHP + " HP.");
-            return damage;
 
         } else {
             if (GamePlay.isRandomEventHappened(30)) {
@@ -39,7 +37,6 @@ public class Monster {
             playerHP -= damage;
             Aventurer.setM_iHealthPoint(playerHP);
             System.out.println("You have now " + playerHP + " HP.");
-            return damage;
         }
     }
 
@@ -74,3 +71,4 @@ public class Monster {
         m_sweakness = weakness;
     }
 }
+// TODO: 06/11/2020 if wizard defeated dont display the number of pool 

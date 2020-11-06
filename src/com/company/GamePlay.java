@@ -1,8 +1,6 @@
 package com.company;
 
 // todo protéger les données et les accès
-// todo réduire le scope des variables si possible
-// todo vérifier la cohérence de la langue
 
 import java.util.Random;
 import java.util.Scanner;
@@ -15,16 +13,16 @@ public class GamePlay {
     }
 
     /**
-     * Fonction explicite
+     * the function is explicit
      */
     private static void quitGame() {
         System.exit(0);
     }
 
     private static void playGame(int level) {
-        // on génère l'aventurier
+        // adventurer generation
         Aventurer zelda = new Aventurer();
-        System.out.println("on commence les choses sérieuses, niveau : " + level);
+        System.out.println(zelda.getM_sname() + ",serious things start at difficulty level: " + level);
         Random randomNumber = new Random();
         // this random provide 0 or 1
         int generatedNumber = (randomNumber.nextInt(10)) % 2;
@@ -53,7 +51,6 @@ public class GamePlay {
                 System.out.println("attack with Sword or Water_Flask ?");
                 String choosenWeapon = m_scmenuScan.next();
                 // todo insert isRandomEventHappen
-                // todo verifier que le lowerCase et le trim fonctionne
 
                 // est ce que l'arme est efficace ?
                 if (choosenWeapon.equals(myMonster.getM_sweakness())) {
@@ -63,11 +60,11 @@ public class GamePlay {
                     if (isAlive(Monster.getM_ihealthPoint())) {
                         System.out.println("the fight continue");
                     } else {
-                        System.out.println("the monster is defeated -line 82");
+                        System.out.println("the monster is defeated");
                         passedRoom++;
                         // si tous les monstres sont tués = victoire
                         if (passedRoom == 5) {
-                            System.out.println("Vous avez gagné");
+                            System.out.println(zelda.getM_sname() + " have won");
                             m_bendGame = true;
                         }
                         // si monstre tué mais qu'il en reste encore on génère un autre monstre
@@ -75,7 +72,7 @@ public class GamePlay {
 
                         generateMonster(generatedNumber, myMonster);
                         myMonster.setM_ihealthPoint(20);
-                        ;
+
                     }
                 } else {
                     System.out.println("The weapon isn't useful");
@@ -126,16 +123,16 @@ public class GamePlay {
      * Welcome message at the beginning of the game.
      */
     private static void welcomeMessage() {
-        String line = "Bienvenue au pied du Donjon monstrueux et pleins de monstres.";
+        String line = "Welcome to the aweful and ugly DUNGEON";
         String bars = "";
         for (int i = 0; i < line.length(); i++) {
             bars += "-";
         }
-        System.out.println(bars + "\n" + line + "\nMontrez leur de quel bois vous vous chauffez !!!\n" + bars);
+        System.out.println(bars + "\n" + line + "\nClean it!\n" + bars);
     }
 
     /**
-     * Cette fonction sert de pivot pour accéder à toutes les facettes du jeu, on atterris içi à chaque fin de partie par ex
+     * With this function you can access to all the part of the program
      */
     private static void mainMenu() {
         System.out.println("Make a choice and don't be Afraid!!!");
@@ -177,5 +174,4 @@ public class GamePlay {
     private static int passedRoom = 0;
 }
 
-// TODO: 05/11/2020 return needed on method?
 // todo initialiser les waterFlasks
