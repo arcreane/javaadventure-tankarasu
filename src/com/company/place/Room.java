@@ -8,6 +8,6 @@ public class Room {
         Warrior_new monsterInRoom = monster;
     }
 
-    public Room(String wizard, int i, boolean b) {
+    public Room(int i) {
     }
 }

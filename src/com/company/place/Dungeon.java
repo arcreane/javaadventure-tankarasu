@@ -1,12 +1,21 @@
 package com.company.place;
 
 public class Dungeon {
-
-    // dungeon contains a number of room depends difficulty
     // constructor
     // initialisation du dungeon todo effacer à la fin
+
+    /**
+     * dungeon contains a number of room depends difficulty
+     *
+     * @param difficulty - the difficulty set the number of Rooms, so by the number of Monster to fight
+     */
     public Dungeon(int difficulty) {
-          m_aDungeonRoom = new Room[(4 + difficulty)];
+        m_aDungeonRoom = new Room[(4 + difficulty)];
+        // filling dungeon with a number of room
+        for (Room oneRoom : m_aDungeonRoom
+        ) {
+            oneRoom = new Room(difficulty);
+        }
     }
 
     //méthodes
@@ -22,9 +31,7 @@ public class Dungeon {
      * give the Heroes capability of enter the dungeon
      */
     public void enterDungeon() {
-        for (Room aRoom : m_aDungeonRoom) {
-            System.out.println("a room in the Dungeon");
-        }
+
     }
 
     // variables membres
