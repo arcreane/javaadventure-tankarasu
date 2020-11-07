@@ -1,6 +1,11 @@
 package com.company.place;
 
 import com.company.charactere.Adventurer_new;
+import com.company.charactere.Barbarian_new;
+import com.company.charactere.Warrior_new;
+import com.company.charactere.Wizard_new;
+
+import java.util.Random;
 
 public class Dungeon {
     // constructor
@@ -8,40 +13,50 @@ public class Dungeon {
 
     /**
      * dungeon contains a number of room depends difficulty
-     *
-     * @param difficulty - the difficulty set the number of Rooms, so by the number of Monster to fight
      */
-    public Dungeon(int difficulty) {
-        m_aDungeonRoom = new Room[(4 + difficulty)];
-        // filling dungeon with a number of room
-        for (Room oneRoom : m_aDungeonRoom
-        ) {
-            oneRoom = new Room();
-        }
+    public Dungeon(int level) {
+        m_numberOfRoom = 4 + level;
     }
 
     //méthodes
-
-    // fill each room with monster
-    public void fillTheRoom() {
-//        for (int i = 0; i < dungeonRoom.length; i++) {
-//          dungeonRoom[i] = new Room("Wizard",20,false);
-//        }
-    }
 
     /**
      * give the Heroes capability of enter the dungeon
      */
     public void enterDungeon(Adventurer_new player) {
-        // todo gestion du heros isAlive() lors de l'entrée dans la Room
-        for (Room room : m_aDungeonRoom
-        ) {
-            room.openDoor(player);
+        System.out.println("Serious things start at difficulty level: " + (m_numberOfRoom - 4));
+        // while the player is Alive the game continue
+        while (player.isAlive()) {
+            // we'll loop through each room
+            Warrior_new monster;
+            while (m_numberOfRoom > 0) {
+                // when entering in a Room , a monster is generated
+                System.out.println("Chambre n°" + m_numberOfRoom);
+                generateMonster();
+                // the fight can start
+                while (player.isAlive() ) {
+                    monster.attack(player);
+                }
+                m_numberOfRoom--;
+            }
+
         }
     }
 
+    public void generateMonster() {
+        Random randomNumber = new Random();
+        int generatedNumber = (randomNumber.nextInt(10)) % 2;
+        if (generatedNumber == 0) {
+           monster = new Wizard_new();
+        } else {
+            monster = new Barbarian_new();
+        }
+    }
+
+    //    Setters
+
+
     // variables membres
-    // todo effacer à la fin
-    // déclaration de l'objet donjon
-    Room[] m_aDungeonRoom;
+    int m_numberOfRoom;
+
 }

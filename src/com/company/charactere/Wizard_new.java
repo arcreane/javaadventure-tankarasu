@@ -1,19 +1,21 @@
 package com.company.charactere;
 
-import com.company.charactere.Warrior_new;
-import com.company.weapons.Axe;
+import com.company.weapons.Lightning;
 
 public class Wizard_new extends Warrior_new {
 
     // constructor
-    public Wizard_new(String name, int healthPoint, boolean isKO) {
+    public Wizard_new() {
         super();
+        m_ihealthPoint = 20;
+        m_sName = "Wizard";
+        m_bIsKO = false;
     }
 
     // variables membre
-    Axe weapon = new Axe();
+    Lightning weapon = new Lightning();
 
-    public static void attack() {
+    public void attack() {
         System.out.println("The Wizard attack");
     }
 }

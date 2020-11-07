@@ -7,8 +7,6 @@ public class Warrior_new {
 
     //Constructor
     public Warrior_new() {
-        m_ihealthPoint = 20;
-//        m_nsame = name;
 //        m_ihealthPoint = healthPoint;
 //        m_bisKO = isKO;
     }
@@ -31,18 +29,24 @@ public class Warrior_new {
     }
 
     public void attack(Adventurer_new player) {
-        player.takeDamage(m_weapon.getM_idamage());
+        System.out.println("the warrior attack");
     }
 
+    /**
+     * Explicit function that return boolean
+     *
+     * @return - true if you are still alive
+     */
     public boolean isAlive() {
-        return m_ihealthPoint > 0;
+        return getM_ihealthPoint() > 0;
     }
 
     // variable membres
-    private String m_nsame;
-    private int m_ihealthPoint;
-    private boolean m_bisKO;
+    protected int m_ihealthPoint;
+    protected String m_sName;
+    protected  boolean m_bIsKO;
     Weapon m_weapon;
+//    private boolean m_bisKO;
 
     // getters
 

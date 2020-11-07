@@ -2,10 +2,8 @@ package com.company.game;
 
 // todo protéger les données et les accès
 
-import com.company.charactere.Aventurer;
-import com.company.charactere.Barbarian;
-import com.company.charactere.Monster;
-import com.company.charactere.Wizard;
+import com.company.charactere.*;
+import com.company.place.Dungeon;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -25,26 +23,24 @@ public class GamePlay {
     }
 
     private static void playGame(int level) {
-        // adventurer generation
-        Aventurer zelda = new Aventurer();
-        System.out.println(zelda.getM_sname() + ",serious things start at difficulty level: " + level);
-        Random randomNumber = new Random();
-        // this random provide 0 or 1
-        int generatedNumber = (randomNumber.nextInt(10)) % 2;
-        String generatedMonster = "";
+        // adventurer & Dungeon generation
+        Adventurer_new player = new Adventurer_new();
+        Dungeon uglyDungeon = new Dungeon(level);
+        uglyDungeon.enterDungeon(player);
+
+
+
 
         // tant que la partie n'est pas terminé , on joue.
         while (!m_bendGame) {
             // un monstre est généré
-            generatedNumber = (randomNumber.nextInt(10)) % 2;
             Monster myMonster = new Monster();
-            generateMonster(generatedNumber, myMonster);
 
             // la porte s'ouvre et je me fait attaquer
             System.out.println("The doors N°" + (passedRoom + 1) + " is opening and a " + myMonster.getM_sname() + " attacks!");
             while (passedRoom != 5) {
                 // no need to fight if your dead
-                if (!isAlive(Aventurer.getM_iHealthPoint())) return;
+                //if (!isAlive(Aventurer.getM_iHealthPoint())) return;
 
                 // monster attack as Welcome message
                 Monster.attack();
@@ -62,21 +58,18 @@ public class GamePlay {
                     System.out.println("The weapon is useFul");
                     Aventurer.attack(myMonster.getM_sname(), myMonster.getM_sweakness(), choosenWeapon);
                     // est ce que le monstre est mort ?
-                    if (isAlive(Monster.getM_ihealthPoint())) {
+                    if (true) {
                         System.out.println("the fight continue");
                     } else {
                         System.out.println("the monster is defeated");
                         passedRoom++;
                         // si tous les monstres sont tués = victoire
                         if (passedRoom == 5) {
-                            System.out.println(zelda.getM_sname() + " have won");
+                            System.out.println("Player have won the treasure");
                             m_bendGame = true;
                         }
                         // si monstre tué mais qu'il en reste encore on génère un autre monstre
-                        generatedNumber = (randomNumber.nextInt(10)) % 2;
 
-                        generateMonster(generatedNumber, myMonster);
-                        myMonster.setM_ihealthPoint(20);
 
                     }
                 } else {
@@ -87,20 +80,8 @@ public class GamePlay {
     }
 
     private static void generateMonster(int generatedNumber, Monster myMonster) {
-        if (generatedNumber == 0) {
-            myMonster.setM_ihealthPoint(Wizard.getM_iHealthPoint());
-            myMonster.setM_sname(Wizard.getM_sname());
-            myMonster.setM_sweakness(Wizard.getM_sweakness());
-        } else {
-            myMonster.setM_ihealthPoint(Barbarian.getM_iHealthPoint());
-            myMonster.setM_sname(Barbarian.getM_sname());
-            myMonster.setM_sweakness(Barbarian.getM_sweakness());
 
-        }
-    }
 
-    private static boolean isAlive(int healthPoint) {
-        return healthPoint > 0;
     }
 
     public static boolean isRandomEventHappened(int pCentChance) {
@@ -126,7 +107,7 @@ public class GamePlay {
     /**
      * Welcome message at the beginning of the game.
      */
-    private static void welcomeMessage() {
+    public static void welcomeMessage() {
         String line = "Welcome to the aweful and ugly DUNGEON";
         String bars = "";
         for (int i = 0; i < line.length(); i++) {
@@ -138,7 +119,7 @@ public class GamePlay {
     /**
      * With this function you can access to all the part of the program
      */
-    private static void mainMenu() {
+    public static void mainMenu() {
         System.out.println("Make a choice and don't be Afraid!!!");
         for (m_emenu choice : m_emenu.values()) {
             System.out.println((choice.ordinal() + 1) + " - " + choice);

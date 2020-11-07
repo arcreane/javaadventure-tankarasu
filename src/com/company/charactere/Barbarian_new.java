@@ -6,15 +6,17 @@ public class Barbarian_new extends Warrior_new {
 
     // constructor
 
-    public Barbarian_new(String name, int healthPoint,boolean isKO) {
+    public Barbarian_new() {
         super();
+        m_ihealthPoint = 30;
+        m_sName = "Barbarian";
+        m_bIsKO = false;
     }
 
     // variables membre
     Axe weapon = new Axe();
-    boolean m_bisKO = false;
 
-    public static void attack(){
+    public  void attack() {
         System.out.println("The barbarian attack");
     }
 }
